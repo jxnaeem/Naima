@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>নাঈমার গর্ভকাল ট্র্যাকার</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600&display=swap');
+
+    :root {
+      --pink: #ff4d6d;
+      --soft-pink: #ff9a9e;
+      --light: #fad0c4;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans Bengali', sans-serif;
+      background: linear-gradient(135deg, #ffe4e8, #fff0f3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bg-balloon {
+      position: absolute;
+      font-size: 32px;
+      animation: floatBalloon 11s linear infinite;
+      z-index: 0;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .bg-balloon::after {
+      content: '';
+      width: 3px;
+      height: 55px;
+      background: linear-gradient(to bottom, #ff4d6d88, transparent);
+      margin-top: 4px;
+      border-radius: 50%;
+      animation: stringSwing 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatBalloon {
+      0% { transform: translateY(110vh); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-25vh); opacity: 0; }
+    }
+
+    @keyframes stringSwing {
+      from { transform: rotate(-8deg); }
+      to { transform: rotate(8deg); }
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.96);
+      padding: 30px 24px;
+      border-radius: 28px;
+      box-shadow: 0 15px 35px rgba(255, 77, 109, 0.15);
+      width: 92%;
+      max-width: 420px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .baby-label {
+      color: #777;
+      font-size: 1.1rem;
+      display: block;
+    }
+
+    .baby-name {
+      color: var(--pink);
+      font-size: 2.2rem;
+      font-weight: 600;
+    }
+
+    .family {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 20px;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    .family span {
+      color: var(--pink);
+      font-weight: 600;
+    }
+
+    .heart {
+      font-size: 52px;
+      animation: heartbeat 1.4s infinite;
+      margin: 10px 0 18px;
+    }
+
+    @keyframes heartbeat {
+      50% { transform: scale(1.2); }
+    }
+
+    .info {
+      font-size: 1.05rem;
+      color: #666;
+      margin-bottom: 24px;
+      background: #fff0f3;
+      padding: 10px 18px;
+      border-radius: 50px;
+      display: inline-block;
+    }
+
+    .result {
+      margin-bottom: 28px;
+      padding: 24px 20px;
+      background: linear-gradient(90deg, #fff0f3, #fff);
+      border-radius: 24px;
+    }
+
+    .weeks {
+      font-size: 2.2rem;
+      color: var(--pink);
+      font-weight: 600;
+    }
+
+    .months-days {
+      margin-top: 14px;
+      font-size: 1.3rem;
+    }
+
+    .months-days span {
+      background: #ffedf2;
+      padding: 6px 18px;
+      border-radius: 50px;
+      color: var(--pink);
+      font-weight: 600;
+      margin: 5px;
+      display: inline-block;
+    }
+
+    .progress-container {
+      height: 26px;
+      background: #f1e4e8;
+      border-radius: 9999px;
+      overflow: hidden;
+      margin: 20px 0;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #ff4d6d, #ff8a9e);
+      width: 0%;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+    }
+
+    .due-date {
+      font-size: 1.1rem;
+      background: #fff0f3;
+      padding: 14px;
+      border-radius: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Balloon -->
+  <div class="bg-balloon" style="left:20%;">🎈</div>
+  <div class="bg-balloon" style="left:70%;">🎈</div>
+
+  <div class="container">
+
+    <!-- 👶 শিশুর নাম -->
+    <h1>
+  <span class="baby-name">নাঈমা 💖</span>
+</h1>
+
+<div class="family">
+  বাবার নামঃ <span>নাঈম</span> ❤️ মায়ের নামঃ <span>হাসি</span>
+</div>
+
+    <div class="heart">❤️</div>
+
+    <div class="info">
+      শুরুর তারিখ: <b>১ আগস্ট ২০২৫</b>
+    </div>
+
+    <div class="result" id="output"></div>
+
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar">
+        <span id="progressText">০%</span>
+      </div>
+    </div>
+
+    <div class="due-date" id="dueInfo"></div>
+
+  </div>
+
+<script>
+function toBn(num) {
+  const bn = '০১২৩৪৫৬৭৮৯';
+  return num.toString().replace(/\d/g, d => bn[d]);
+}
+
+function calculate() {
+  const lmpDate = new Date('2025-08-01');
+  const today = new Date();
+  let diffDays = Math.floor((today - lmpDate) / (1000*60*60*24));
+  if(diffDays < 0) diffDays = 0;
+
+  const weeks = Math.floor(diffDays / 7);
+  const days = diffDays % 7;
+  const months = Math.floor(diffDays / 30);
+  const extraDays = diffDays % 30;
+
+  const progress = Math.min(100, Math.floor((diffDays / 280)*100));
+
+  const dueDate = new Date(lmpDate.getTime() + 280*24*60*60*1000);
+
+  document.getElementById('output').innerHTML = `
+    <div class="weeks">${toBn(weeks)} সপ্তাহ ${toBn(days)} দিন</div>
+    <div class="months-days">
+      <span>${toBn(months)} মাস</span>
+      <span>${toBn(extraDays)} দিন</span>
+    </div>
+  `;
+
+  document.getElementById('progressBar').style.width = progress + '%';
+  document.getElementById('progressText').innerText = `${toBn(weeks)}/৪০ সপ্তাহ`;
+
+  document.getElementById('dueInfo').innerHTML = `
+    সম্ভাব্য জন্ম: ${toBn(dueDate.getDate())}/${toBn(dueDate.getMonth()+1)}/${toBn(dueDate.getFullYear())}
+  `;
+}
+
+calculate();
+setInterval(calculate, 10000);
+</script>
+
+</body>
+</html>
