@@ -9,8 +9,7 @@
 
     :root {
       --pink: #ff4d6d;
-      --soft-pink: #ff9a9e;
-      --light: #fad0c4;
+      --light-pink: #fff0f3;
     }
 
     * {
@@ -34,7 +33,7 @@
 
     .container {
       background: rgba(255, 255, 255, 0.96);
-      padding: 30px 24px;
+      padding: 28px 20px;
       border-radius: 28px;
       box-shadow: 0 15px 35px rgba(255, 77, 109, 0.15);
       width: 92%;
@@ -42,8 +41,6 @@
       text-align: center;
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 77, 109, 0.1);
-      position: relative;
-      z-index: 1;
     }
 
     h1 {
@@ -51,7 +48,6 @@
       color: var(--pink);
       margin-bottom: 8px;
       font-weight: 600;
-      letter-spacing: -1px;
     }
 
     .family {
@@ -70,17 +66,15 @@
       font-size: 52px;
       display: inline-block;
       margin: 10px 0 18px;
-      filter: drop-shadow(0 4px 8px rgba(255, 77, 109, 0.3));
     }
 
     .info {
       font-size: 1.05rem;
       color: #666;
       margin-bottom: 24px;
-      background: #fff0f3;
+      background: var(--light-pink);
       padding: 14px 20px;
       border-radius: 50px;
-      display: inline-block;
       line-height: 1.4;
     }
 
@@ -93,54 +87,56 @@
     }
 
     .age-title {
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       color: var(--pink);
       font-weight: 600;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
-    .age-breakdown {
+    /* বছর, মাস, দিন — এক লাইনে */
+    .age-main {
       display: flex;
       justify-content: center;
-      gap: 18px;
+      gap: 12px;
       margin-bottom: 22px;
       flex-wrap: wrap;
     }
 
     .age-unit {
       background: #ffedf2;
-      padding: 12px 22px;
+      padding: 14px 18px;
       border-radius: 20px;
-      min-width: 88px;
+      min-width: 82px;
       box-shadow: 0 4px 12px rgba(255, 77, 109, 0.15);
+      text-align: center;
     }
 
     .age-unit .num {
-      font-size: 2.1rem;
+      font-size: 2.15rem;
       font-weight: 600;
       color: var(--pink);
       line-height: 1;
-      display: block;
     }
 
     .age-unit .label {
-      font-size: 1rem;
+      font-size: 0.98rem;
       color: #555;
       font-weight: 500;
-      margin-top: 4px;
     }
 
+    /* ঘণ্টা, মিনিট, সেকেন্ড — এক লাইনে */
     .live-timer {
       background: #fff;
       border: 2px solid #ffedf2;
       border-radius: 50px;
-      padding: 12px 24px;
-      font-size: 1.35rem;
+      padding: 14px 24px;
+      font-size: 1.32rem;
       color: #333;
       font-weight: 600;
       box-shadow: 0 4px 12px rgba(255, 77, 109, 0.1);
       display: inline-block;
-      min-width: 260px;
+      width: 100%;
+      max-width: 340px;
     }
 
     .live-timer span {
@@ -149,19 +145,18 @@
 
     @media (max-width: 480px) {
       .container { 
-        padding: 24px 18px; 
+        padding: 24px 16px; 
         border-radius: 24px; 
       }
       h1 { font-size: 1.95rem; }
       .age-unit { 
-        min-width: 78px; 
-        padding: 10px 18px; 
+        min-width: 76px; 
+        padding: 12px 14px; 
       }
-      .age-unit .num { font-size: 1.85rem; }
+      .age-unit .num { font-size: 1.9rem; }
       .live-timer { 
-        font-size: 1.2rem; 
-        padding: 10px 20px; 
-        min-width: 240px; 
+        font-size: 1.18rem; 
+        padding: 12px 18px; 
       }
     }
   </style>
@@ -213,7 +208,7 @@
       const outputHTML = `
         <div class="age-title">বয়স চলছে</div>
         
-        <div class="age-breakdown">
+        <div class="age-main">
           <div class="age-unit">
             <span class="num">${toBn(years)}</span>
             <span class="label">বছর</span>
