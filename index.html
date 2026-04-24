@@ -2,132 +2,120 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>নাঈমার বয়স ট্র্যাকার</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600&display=swap');
 
-:root {
-  --pink: #ff4d6d;
-  --soft: #fff0f3;
+:root{
+  --pink:#ff4d6d;
+  --bg:#ffe4ea;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-body {
-  font-family: 'Noto Sans Bengali', sans-serif;
-  background: linear-gradient(135deg, #ffe4e8, #fff0f3);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+body{
+  font-family:'Noto Sans Bengali',sans-serif;
+  width:100vw;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#ffe4ea,#fff0f3);
 }
 
 /* MAIN CARD */
-.container {
-  width: 95%;
-  max-width: 420px;
-  background: rgba(255,255,255,0.95);
-  border-radius: 24px;
-  padding: 20px 16px;
-  text-align: center;
-  box-shadow: 0 12px 30px rgba(255, 77, 109, 0.15);
-  backdrop-filter: blur(10px);
+.container{
+  width:92%;
+  max-width:420px;
+  background:#fff;
+  border-radius:26px;
+  padding:18px 14px;
+  box-shadow:0 12px 30px rgba(255,77,109,0.15);
+  text-align:center;
 }
 
-/* HEADER */
-h1 {
-  color: var(--pink);
-  font-size: 1.9rem;
-  margin-bottom: 5px;
+/* TITLE */
+h1{
+  color:var(--pink);
+  font-size:1.9rem;
 }
 
-.family {
-  font-size: 1rem;
-  margin-bottom: 6px;
+/* FAMILY */
+.family{
+  margin-top:6px;
+  font-size:1rem;
 }
 
-.family span {
-  color: var(--pink);
-  font-weight: 600;
+.family span{
+  color:var(--pink);
+  font-weight:600;
 }
 
-.extra {
-  font-size: 0.95rem;
-  margin-bottom: 10px;
+/* EXTRA INFO */
+.extra{
+  margin-top:6px;
+  font-size:0.95rem;
 }
 
-.extra span {
-  color: var(--pink);
-  font-weight: 600;
+.extra span{
+  color:var(--pink);
+  font-weight:600;
 }
 
 /* INFO BOX */
-.info {
-  background: var(--soft);
-  padding: 10px;
-  border-radius: 12px;
-  font-size: 0.9rem;
-  margin-bottom: 12px;
-}
-
-/* AGE CARD */
-.result {
-  background: linear-gradient(135deg, #fff, #fff0f3);
-  padding: 14px;
-  border-radius: 18px;
+.info{
+  margin-top:10px;
+  background:#fff0f3;
+  padding:10px;
+  border-radius:14px;
+  font-size:0.9rem;
 }
 
 /* AGE GRID */
-.age-grid {
-  display: flex;
-  justify-content: space-between;
-  gap: 6px;
-  margin-bottom: 12px;
+.age-grid{
+  display:flex;
+  justify-content:space-between;
+  margin-top:14px;
+  gap:8px;
 }
 
-.age-box {
-  flex: 1;
-  background: #fff;
-  border-radius: 12px;
-  padding: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+.box{
+  flex:1;
+  background:#fff;
+  border-radius:14px;
+  padding:10px 5px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.05);
 }
 
-.num {
-  font-size: 1.4rem;
-  color: var(--pink);
-  font-weight: 600;
+.num{
+  font-size:1.4rem;
+  color:var(--pink);
+  font-weight:600;
 }
 
-.label {
-  font-size: 0.75rem;
-  color: #666;
+.label{
+  font-size:0.8rem;
+  color:#666;
 }
 
 /* TIMER */
-.timer {
-  background: #fff;
-  padding: 8px;
-  border-radius: 20px;
-  font-size: 1rem;
-  font-weight: 600;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+.timer{
+  margin-top:12px;
+  background:#fff;
+  padding:10px;
+  border-radius:20px;
+  font-weight:600;
+  box-shadow:0 3px 10px rgba(0,0,0,0.08);
 }
 
-.timer span {
-  color: var(--pink);
-}
-
-/* MOBILE OPTIMIZATION */
-@media(max-width:400px){
-  h1 { font-size: 1.7rem; }
-  .num { font-size: 1.2rem; }
+.timer span{
+  color:var(--pink);
 }
 </style>
 </head>
@@ -137,83 +125,86 @@ h1 {
 <div class="container">
 
   <h1>নাঈমা 💖</h1>
-
+<b>
   <div class="family">
     বাবা: <span>নাঈম</span> ❤️ মা: <span>হাসি</span>
   </div>
 
   <div class="extra">
-    রক্তের গ্রুপ: <span>AB+</span> • 
-    ওজন: <span>২ কেজি ৬০০ গ্রাম</span>
+    রক্তের গ্রুপ: <span>AB+</span> । ওজন: <span>২ কেজি ৬০০ গ্রাম</span>
   </div>
 
   <div class="info">
-    জন্ম: ২৩ এপ্রিল ২০২৬ <br>
+    জন্ম তারিখ:  ২৩ এপ্রিল ২০২৬ ইং <br>
     সময়: সকাল ৮ঃ৪৫ মিনিট <br>
-    বৃহস্পতিবার
+    <p style="color:#ff4d6d;">বৃহস্পতিবার</p>
+  </div>
+</b>
+  <div class="age-grid">
+    <div class="box">
+      <div class="num" id="year">০০</div>
+      <div class="label">বছর</div>
+    </div>
+    <div class="box">
+      <div class="num" id="month">০০</div>
+      <div class="label">মাস</div>
+    </div>
+    <div class="box">
+      <div class="num" id="day">০০</div>
+      <div class="label">দিন</div>
+    </div>
   </div>
 
-  <div class="result" id="output"></div>
+  <div class="timer" id="timer">০০ ঘন্টা ০০ মিনিট ০০ সেকেন্ড</div>
 
 </div>
 
 <script>
-function toBn(num) {
-  const bn = '০১২৩৪৫৬৭৮৯';
-  return num.toString().padStart(2,'0').replace(/\d/g, d => bn[d]);
+
+function toBn(n){
+  const bn="০১২৩৪৫৬৭৮৯";
+  return n.toString().padStart(2,'0').replace(/\d/g,d=>bn[d]);
 }
 
-function calculateAge() {
-  const birth = new Date(2026, 3, 23, 8, 45, 0);
+function updateAge(){
+
+  const birth = new Date(2026,3,23,8,45,0);
   const now = new Date();
 
-  let years = now.getFullYear() - birth.getFullYear();
-  let months = now.getMonth() - birth.getMonth();
-  let days = now.getDate() - birth.getDate();
+  let years = now.getFullYear()-birth.getFullYear();
+  let months = now.getMonth()-birth.getMonth();
+  let days = now.getDate()-birth.getDate();
 
-  let hrs = now.getHours() - birth.getHours();
-  let mins = now.getMinutes() - birth.getMinutes();
-  let secs = now.getSeconds() - birth.getSeconds();
+  let hrs = now.getHours()-birth.getHours();
+  let mins = now.getMinutes()-birth.getMinutes();
+  let secs = now.getSeconds()-birth.getSeconds();
 
-  if (secs < 0) { secs += 60; mins--; }
-  if (mins < 0) { mins += 60; hrs--; }
-  if (hrs < 0) { hrs += 24; days--; }
+  if(secs<0){secs+=60;mins--;}
+  if(mins<0){mins+=60;hrs--;}
+  if(hrs<0){hrs+=24;days--;}
 
-  if (days < 0) {
-    const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-    days += prevMonth.getDate();
+  if(days<0){
+    const prev=new Date(now.getFullYear(),now.getMonth(),0);
+    days+=prev.getDate();
     months--;
   }
 
-  if (months < 0) {
-    months += 12;
+  if(months<0){
+    months+=12;
     years--;
   }
 
-  document.getElementById('output').innerHTML = `
-    <div class="age-grid">
-      <div class="age-box">
-        <div class="num">${toBn(years)}</div>
-        <div class="label">বছর</div>
-      </div>
-      <div class="age-box">
-        <div class="num">${toBn(months)}</div>
-        <div class="label">মাস</div>
-      </div>
-      <div class="age-box">
-        <div class="num">${toBn(days)}</div>
-        <div class="label">দিন</div>
-      </div>
-    </div>
+  document.getElementById("year").innerText=toBn(years);
+  document.getElementById("month").innerText=toBn(months);
+  document.getElementById("day").innerText=toBn(days);
 
-    <div class="timer">
-      <span>${toBn(hrs)}:${toBn(mins)}:${toBn(secs)}</span>
-    </div>
-  `;
+  document.getElementById("timer").innerHTML=
+    `<span>${toBn(hrs)} ঘন্টা ${toBn(mins)} মিনিট ${toBn(secs)} সেকেন্ড</span>`;
 }
 
-setInterval(calculateAge, 1000);
-calculateAge();
+setInterval(updateAge,1000);
+updateAge();
+
 </script>
 
 </body>
