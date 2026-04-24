@@ -1,263 +1,220 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>নাঈমার বয়স ট্র্যাকার</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600&amp;display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>নাঈমার বয়স ট্র্যাকার</title>
 
-    :root {
-      --pink: #ff4d6d;
-      --soft-pink: #ff9a9e;
-      --light: #fad0c4;
-    }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600&display=swap');
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+:root {
+  --pink: #ff4d6d;
+  --soft: #fff0f3;
+}
 
-    body {
-      font-family: 'Noto Sans Bengali', sans-serif;
-      background: linear-gradient(135deg, #ffe4e8, #fff0f3);
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      overflow: hidden;
-      position: relative;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    .container {
-      background: rgba(255, 255, 255, 0.96);
-      padding: 30px 24px;
-      border-radius: 28px;
-      box-shadow: 0 15px 35px rgba(255, 77, 109, 0.15);
-      width: 92%;
-      max-width: 420px;
-      text-align: center;
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 77, 109, 0.1);
-      position: relative;
-      z-index: 1;
-      animation: fadeInScale 1s ease-out;
-    }
+body {
+  font-family: 'Noto Sans Bengali', sans-serif;
+  background: linear-gradient(135deg, #ffe4e8, #fff0f3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
 
-    @keyframes fadeInScale {
-      from { opacity: 0; transform: scale(0.92) translateY(20px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
-    }
+/* MAIN CARD */
+.container {
+  width: 95%;
+  max-width: 420px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 24px;
+  padding: 20px 16px;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(255, 77, 109, 0.15);
+  backdrop-filter: blur(10px);
+}
 
-    h1 {
-      font-size: 2.2rem;
-      color: var(--pink);
-      margin-bottom: 8px;
-      font-weight: 600;
-      letter-spacing: -1px;
-    }
+/* HEADER */
+h1 {
+  color: var(--pink);
+  font-size: 1.9rem;
+  margin-bottom: 5px;
+}
 
-    .family {
-      font-size: 1.1rem;
-      color: #555;
-      margin-bottom: 20px;
-      font-weight: 500;
-    }
+.family {
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
 
-    .family span {
-      color: var(--pink);
-      font-weight: 600;
-    }
+.family span {
+  color: var(--pink);
+  font-weight: 600;
+}
 
-    .heart {
-      font-size: 52px;
-      animation: heartbeat 1.4s infinite ease-in-out;
-      display: inline-block;
-      margin: 10px 0 18px;
-      filter: drop-shadow(0 4px 8px rgba(255, 77, 109, 0.3));
-    }
+.extra {
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
 
-    @keyframes heartbeat {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.18); }
-    }
+.extra span {
+  color: var(--pink);
+  font-weight: 600;
+}
 
-    .info {
-      font-size: 1.05rem;
-      color: #666;
-      margin-bottom: 24px;
-      background: #fff0f3;
-      padding: 14px 20px;
-      border-radius: 50px;
-      display: inline-block;
-      line-height: 1.4;
-    }
+/* INFO BOX */
+.info {
+  background: var(--soft);
+  padding: 10px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
 
-    /* নতুন বয়স ডিসপ্লে – সুন্দর ও মোবাইল ফ্রেন্ডলি */
-    .result {
-      margin-bottom: 20px;
-      padding: 24px 20px;
-      background: linear-gradient(90deg, #fff0f3, #fff);
-      border-radius: 24px;
-      box-shadow: 0 8px 20px rgba(255, 77, 109, 0.12);
-    }
+/* AGE CARD */
+.result {
+  background: linear-gradient(135deg, #fff, #fff0f3);
+  padding: 14px;
+  border-radius: 18px;
+}
 
-    .age-title {
-      font-size: 1.3rem;
-      color: var(--pink);
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
+/* AGE GRID */
+.age-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 12px;
+}
 
-    .age-breakdown {
-      display: flex;
-      justify-content: center;
-      gap: 18px;
-      margin-bottom: 22px;
-      flex-wrap: wrap;
-    }
+.age-box {
+  flex: 1;
+  background: #fff;
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
 
-    .age-unit {
-      background: #ffedf2;
-      padding: 12px 22px;
-      border-radius: 20px;
-      min-width: 88px;
-      box-shadow: 0 4px 12px rgba(255, 77, 109, 0.15);
-    }
+.num {
+  font-size: 1.4rem;
+  color: var(--pink);
+  font-weight: 600;
+}
 
-    .age-unit .num {
-      font-size: 2.1rem;
-      font-weight: 600;
-      color: var(--pink);
-      line-height: 1;
-      display: block;
-    }
+.label {
+  font-size: 0.75rem;
+  color: #666;
+}
 
-    .age-unit .label {
-      font-size: 1rem;
-      color: #555;
-      font-weight: 500;
-      margin-top: 4px;
-    }
+/* TIMER */
+.timer {
+  background: #fff;
+  padding: 8px;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+}
 
-    .live-timer {
-      background: #fff;
-      border: 2px solid #ffedf2;
-      border-radius: 50px;
-      padding: 12px 24px;
-      font-size: 1.35rem;
-      color: #333;
-      font-weight: 600;
-      box-shadow: 0 4px 12px rgba(255, 77, 109, 0.1);
-      display: inline-block;
-      min-width: 260px;
-    }
+.timer span {
+  color: var(--pink);
+}
 
-    .live-timer span {
-      color: var(--pink);
-    }
-
-    @media (max-width: 480px) {
-      .container { 
-        padding: 24px 18px; 
-        border-radius: 24px; 
-      }
-      h1 { font-size: 1.95rem; }
-      .age-unit { 
-        min-width: 78px; 
-        padding: 10px 18px; 
-      }
-      .age-unit .num { font-size: 1.85rem; }
-      .live-timer { 
-        font-size: 1.2rem; 
-        padding: 10px 20px; 
-        min-width: 240px; 
-      }
-    }
-  </style>
+/* MOBILE OPTIMIZATION */
+@media(max-width:400px){
+  h1 { font-size: 1.7rem; }
+  .num { font-size: 1.2rem; }
+}
+</style>
 </head>
+
 <body>
 
-  <div class="container">
-    <h1>নাঈমা 💖</h1>
-    
-    <div class="family">
-      বাবা <span>নাঈম</span> ❤️ মা <span>হাসি</span>
-    </div>
+<div class="container">
 
-    <div class="heart">❤️</div>
+  <h1>নাঈমা 💖</h1>
 
-    <!-- জন্ম তারিখ ও সময় -->
-    <div class="info">
-      জন্ম তারিখ: <b>২৩ এপ্রিল ২০২৬</b><br>
-      সময়: <b>সকাল ৮ঃ৪৫ মিনিট</b>
-    </div>
-
-    <!-- বয়স ডিসপ্লে -->
-    <div class="result" id="output">
-      <!-- জাভাস্ক্রিপ্ট দিয়ে পূর্ণ হবে -->
-    </div>
+  <div class="family">
+    বাবা: <span>নাঈম</span> ❤️ মা: <span>হাসি</span>
   </div>
 
-  <script>
-    function toBn(num) {
-      const bn = '০১২৩৪৫৬৭৮৯';
-      return num.toString().padStart(2, '0').replace(/\d/g, d => bn[d]);
-    }
+  <div class="extra">
+    রক্তের গ্রুপ: <span>AB+</span> • 
+    ওজন: <span>২ কেজি ৬০০ গ্রাম</span>
+  </div>
 
-    function calculateAge() {
-      // জন্ম তারিখ ও সময় (২০২৬-০৪-২৩ সকাল ৮:৪৫)
-      const birth = new Date(2026, 3, 23, 8, 45, 0);
-      const now = new Date();
-      let diffMs = now.getTime() - birth.getTime();
-      if (diffMs < 0) diffMs = 0;
+  <div class="info">
+    জন্ম: ২৩ এপ্রিল ২০২৬ <br>
+    সময়: সকাল ৮ঃ৪৫ মিনিট <br>
+    বৃহস্পতিবার
+  </div>
 
-      // মোট দিন, ঘণ্টা, মিনিট, সেকেন্ড হিসাব
-      const totalSeconds = Math.floor(diffMs / 1000);
-      const secs = totalSeconds % 60;
-      const mins = Math.floor(totalSeconds / 60) % 60;
-      const hrs = Math.floor(totalSeconds / 3600) % 24;
-      const fullDays = Math.floor(totalSeconds / 86400);
+  <div class="result" id="output"></div>
 
-      // বছর, মাস, দিন (সরল হিসাব – বেবির জন্য উপযুক্ত)
-      const years = Math.floor(fullDays / 365);
-      const remainingDays = fullDays % 365;
-      const months = Math.floor(remainingDays / 30);
-      const days = remainingDays % 30;
+</div>
 
-      // সুন্দর আউটপুট
-      const outputHTML = `
-        <div class="age-title">বয়স চলছে</div>
-        
-        <div class="age-breakdown">
-          <div class="age-unit">
-            <span class="num">${toBn(years)}</span>
-            <span class="label">বছর</span>
-          </div>
-          <div class="age-unit">
-            <span class="num">${toBn(months)}</span>
-            <span class="label">মাস</span>
-          </div>
-          <div class="age-unit">
-            <span class="num">${toBn(days)}</span>
-            <span class="label">দিন</span>
-          </div>
-        </div>
+<script>
+function toBn(num) {
+  const bn = '০১২৩৪৫৬৭৮৯';
+  return num.toString().padStart(2,'0').replace(/\d/g, d => bn[d]);
+}
 
-        <div class="live-timer">
-          <span>${toBn(hrs)} ঘণ্টা ${toBn(mins)} মিনিট ${toBn(secs)} সেকেন্ড</span>
-        </div>
-      `;
+function calculateAge() {
+  const birth = new Date(2026, 3, 23, 8, 45, 0);
+  const now = new Date();
 
-      document.getElementById('output').innerHTML = outputHTML;
-    }
+  let years = now.getFullYear() - birth.getFullYear();
+  let months = now.getMonth() - birth.getMonth();
+  let days = now.getDate() - birth.getDate();
 
-    // প্রতি সেকেন্ডে আপডেট (লাইভ টাইমার)
-    window.onload = calculateAge;
-    setInterval(calculateAge, 1000);
-  </script>
+  let hrs = now.getHours() - birth.getHours();
+  let mins = now.getMinutes() - birth.getMinutes();
+  let secs = now.getSeconds() - birth.getSeconds();
+
+  if (secs < 0) { secs += 60; mins--; }
+  if (mins < 0) { mins += 60; hrs--; }
+  if (hrs < 0) { hrs += 24; days--; }
+
+  if (days < 0) {
+    const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+    days += prevMonth.getDate();
+    months--;
+  }
+
+  if (months < 0) {
+    months += 12;
+    years--;
+  }
+
+  document.getElementById('output').innerHTML = `
+    <div class="age-grid">
+      <div class="age-box">
+        <div class="num">${toBn(years)}</div>
+        <div class="label">বছর</div>
+      </div>
+      <div class="age-box">
+        <div class="num">${toBn(months)}</div>
+        <div class="label">মাস</div>
+      </div>
+      <div class="age-box">
+        <div class="num">${toBn(days)}</div>
+        <div class="label">দিন</div>
+      </div>
+    </div>
+
+    <div class="timer">
+      <span>${toBn(hrs)}:${toBn(mins)}:${toBn(secs)}</span>
+    </div>
+  `;
+}
+
+setInterval(calculateAge, 1000);
+calculateAge();
+</script>
+
 </body>
 </html>
