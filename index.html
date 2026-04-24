@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>নাঈমার বয়স ট্র্যাকার</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600&amp;display=swap');
+
+    :root {
+      --pink: #ff4d6d;
+      --soft-pink: #ff9a9e;
+      --light: #fad0c4;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans Bengali', sans-serif;
+      background: linear-gradient(135deg, #ffe4e8, #fff0f3);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.96);
+      padding: 30px 24px;
+      border-radius: 28px;
+      box-shadow: 0 15px 35px rgba(255, 77, 109, 0.15);
+      width: 92%;
+      max-width: 420px;
+      text-align: center;
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 77, 109, 0.1);
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      color: var(--pink);
+      margin-bottom: 8px;
+      font-weight: 600;
+      letter-spacing: -1px;
+    }
+
+    .family {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .family span {
+      color: var(--pink);
+      font-weight: 600;
+    }
+
+    .heart {
+      font-size: 52px;
+      display: inline-block;
+      margin: 10px 0 18px;
+      filter: drop-shadow(0 4px 8px rgba(255, 77, 109, 0.3));
+    }
+
+    .info {
+      font-size: 1.05rem;
+      color: #666;
+      margin-bottom: 24px;
+      background: #fff0f3;
+      padding: 14px 20px;
+      border-radius: 50px;
+      display: inline-block;
+      line-height: 1.4;
+    }
+
+    .result {
+      margin-bottom: 20px;
+      padding: 24px 20px;
+      background: linear-gradient(90deg, #fff0f3, #fff);
+      border-radius: 24px;
+      box-shadow: 0 8px 20px rgba(255, 77, 109, 0.12);
+    }
+
+    .age-title {
+      font-size: 1.3rem;
+      color: var(--pink);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .age-breakdown {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    .age-unit {
+      background: #ffedf2;
+      padding: 12px 22px;
+      border-radius: 20px;
+      min-width: 88px;
+      box-shadow: 0 4px 12px rgba(255, 77, 109, 0.15);
+    }
+
+    .age-unit .num {
+      font-size: 2.1rem;
+      font-weight: 600;
+      color: var(--pink);
+      line-height: 1;
+      display: block;
+    }
+
+    .age-unit .label {
+      font-size: 1rem;
+      color: #555;
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    .live-timer {
+      background: #fff;
+      border: 2px solid #ffedf2;
+      border-radius: 50px;
+      padding: 12px 24px;
+      font-size: 1.35rem;
+      color: #333;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(255, 77, 109, 0.1);
+      display: inline-block;
+      min-width: 260px;
+    }
+
+    .live-timer span {
+      color: var(--pink);
+    }
+
+    @media (max-width: 480px) {
+      .container { 
+        padding: 24px 18px; 
+        border-radius: 24px; 
+      }
+      h1 { font-size: 1.95rem; }
+      .age-unit { 
+        min-width: 78px; 
+        padding: 10px 18px; 
+      }
+      .age-unit .num { font-size: 1.85rem; }
+      .live-timer { 
+        font-size: 1.2rem; 
+        padding: 10px 20px; 
+        min-width: 240px; 
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>নাঈমা 💖</h1>
+    
+    <div class="family">
+      বাবা <span>নাঈম</span> ❤️ মা <span>হাসি</span>
+    </div>
+
+    <div class="heart">❤️</div>
+
+    <div class="info">
+      জন্ম তারিখ: <b>২৩ এপ্রিল ২০২৬</b><br>
+      সময়: <b>সকাল ৮ঃ৪৫ মিনিট</b>
+    </div>
+
+    <div class="result" id="output">
+      <!-- জাভাস্ক্রিপ্ট দিয়ে পূর্ণ হবে -->
+    </div>
+  </div>
+
+  <script>
+    function toBn(num) {
+      const bn = '০১২৩৪৫৬৭৮৯';
+      return num.toString().padStart(2, '0').replace(/\d/g, d => bn[d]);
+    }
+
+    function calculateAge() {
+      const birth = new Date(2026, 3, 23, 8, 45, 0);
+      const now = new Date();
+      let diffMs = now.getTime() - birth.getTime();
+      if (diffMs < 0) diffMs = 0;
+
+      const totalSeconds = Math.floor(diffMs / 1000);
+      const secs = totalSeconds % 60;
+      const mins = Math.floor(totalSeconds / 60) % 60;
+      const hrs = Math.floor(totalSeconds / 3600) % 24;
+      const fullDays = Math.floor(totalSeconds / 86400);
+
+      const years = Math.floor(fullDays / 365);
+      const remainingDays = fullDays % 365;
+      const months = Math.floor(remainingDays / 30);
+      const days = remainingDays % 30;
+
+      const outputHTML = `
+        <div class="age-title">বয়স চলছে</div>
+        
+        <div class="age-breakdown">
+          <div class="age-unit">
+            <span class="num">${toBn(years)}</span>
+            <span class="label">বছর</span>
+          </div>
+          <div class="age-unit">
+            <span class="num">${toBn(months)}</span>
+            <span class="label">মাস</span>
+          </div>
+          <div class="age-unit">
+            <span class="num">${toBn(days)}</span>
+            <span class="label">দিন</span>
+          </div>
+        </div>
+
+        <div class="live-timer">
+          <span>${toBn(hrs)} ঘণ্টা ${toBn(mins)} মিনিট ${toBn(secs)} সেকেন্ড</span>
+        </div>
+      `;
+
+      document.getElementById('output').innerHTML = outputHTML;
+    }
+
+    window.onload = calculateAge;
+    setInterval(calculateAge, 1000);
+  </script>
+</body>
+</html>
